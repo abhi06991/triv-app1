@@ -50,6 +50,9 @@ jobs:
       - name: Build an image from Dockerfile
         run: |
           docker build -t ${{ github.sha }} .
+          ls
+          docker images
+
 
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@0.20.0
