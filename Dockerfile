@@ -1,4 +1,12 @@
-FROM eclipse-temurin:22.0.2_9-jdk-alpine
+FROM node:14-alpine
+
+RUN apk add --no-cache bash curl
+
+# Create a vulnerable application (example)
+RUN curl -LO https://example.com/vulnerable-software.tar.gz && \
+    tar -xzf vulnerable-software.tar.gz && \
+    cd vulnerable-software && \
+    ./install.sh
 
 COPY AppOne.java /usr/src/triv-app1/
 
