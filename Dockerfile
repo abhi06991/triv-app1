@@ -1,7 +1,5 @@
-FROM node:14-alpine
-
-RUN apk add --no-cache bash curl
-
+FROM ubuntu:latest
+	
 COPY AppOne.java /usr/src/triv-app1/
 
 WORKDIR /usr/src/triv-app1
