@@ -1,10 +1,11 @@
 name: Build and Deploy
 
 on:
-  push:
-    branches:
-      - main
-
+  workflow_dispatch:
+  workflow_run:
+    workflows: ["Security Checks"]  # This ensures that Workflow 2 runs after Workflow 1
+    types:
+      - completed
 jobs:
   build:
     runs-on: ubuntu-latest
