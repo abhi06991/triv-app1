@@ -6,6 +6,7 @@ on:
     workflows: ["Security Checks"]  # This ensures that Workflow 2 runs after Workflow 1
     types:
       - completed
+      
 jobs:
   build:
     runs-on: ubuntu-latest
