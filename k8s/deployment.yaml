@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: trivapp1-deployment
+  namespace: trivapp-namespace
 spec:
   replicas: 1
   selector:
@@ -12,8 +13,22 @@ spec:
       labels:
         app: trivapp1
     spec:
+      securityContext:                 
+        runAsUser: 1000                
+        runAsGroup: 3000               
+        fsGroup: 2000                  
+        runAsNonRoot: true           
+        readOnlyRootFilesystem: true
+        allowPrivilegeEscalation: false
       containers:
       - name: app1
         image: asia-south1-docker.pkg.dev/triv-case/triv-repo/trivapp1:latest
         ports:
         - containerPort: 8080
+        resources:                     
+          requests:
+            memory: "256Mi"
+            cpu: "250m"
+          limits:
+            memory: "512Mi"
+            cpu: "500m"

@@ -2,8 +2,9 @@ apiVersion: v1
 kind: Service
 metadata:
   name: trivapp1-service
+  namespace: trivapp-namespace
 spec:
-  type: LoadBalancer
+  type: ClusterIP
   selector:
     app: trivapp1
   ports:
