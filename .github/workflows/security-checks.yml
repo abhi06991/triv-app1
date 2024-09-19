@@ -17,8 +17,8 @@ jobs:
   Semgrep-Scan:
     runs-on: ubuntu-latest
 
-    # container:
-    #   image: semgrep/semgrep
+    container:
+      image: semgrep/semgrep
 
     # Skip any PR created by dependabot to avoid permission issues:
     if: (github.actor != 'dependabot[bot]')
@@ -29,8 +29,7 @@ jobs:
 
       - name: Run semgrep on the repo
         run: |
-          pip3 install semgrep
-          semgrep scan -error --sarif --sarif-output=findings.sarif
+          semgrep scan --sarif --sarif-output=findings.sarif
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v3
