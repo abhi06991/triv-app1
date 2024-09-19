@@ -54,6 +54,10 @@ jobs:
       #     sarif_file: findings.sarif
       #   if: always()
 
+      - name: Fail Job if Semgrep Fails
+        if: failure()  # Fail the job if semgrep encountered an error
+        run: exit 1
+        
   Trivy-Scan:
     runs-on: ubuntu-latest
     steps:
