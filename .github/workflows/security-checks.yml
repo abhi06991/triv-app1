@@ -42,7 +42,7 @@ jobs:
             echo "sarif_exists=false" >> $GITHUB_ENV
 
       - name: Upload Artifact
-        if: always() && env.sarif_exists == 'true'  # Check if SARIF exists before uploading
+        if: env.sarif_exists == 'true'  # Check if SARIF exists before uploading
         uses: actions/upload-artifact@v3
         with:
           name: semgrep-scan-results
@@ -54,10 +54,10 @@ jobs:
       #     sarif_file: findings.sarif
       #   if: always()
 
-      - name: Fail Job if Semgrep Fails
-        if: failure()  # Fail the job if semgrep encountered an error
-        run: exit 1
-        
+      # - name: Fail Job if Semgrep Fails
+      #   if: failure()  # Fail the job if semgrep encountered an error
+      #   run: exit 1
+
   Trivy-Scan:
     runs-on: ubuntu-latest
     steps:
