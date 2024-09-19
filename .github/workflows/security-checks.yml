@@ -30,10 +30,9 @@ jobs:
       - name: Run semgrep on the repo
         run: |
           semgrep scan --severity=ERROR --error --config "p/default" --metrics=off --no-autofix --sarif --sarif-output=findings.sarif
-        continue-on-error: true
 
       - name: Check if SARIF file exists
-        # if: always()
+        if: always()
         run: |
           if [[ -f "findings.sarif" ]]; then
             echo "sarif_exists=true" >> $GITHUB_ENV
@@ -42,7 +41,7 @@ jobs:
           fi
 
       - name: Upload Artifact
-        # if: always() && env.sarif_exists == 'true'  # Check if SARIF exists before uploading
+        if: always() && env.sarif_exists == 'true'  # Check if SARIF exists before uploading
         uses: actions/upload-artifact@v3
         with:
           name: semgrep-scan-results
@@ -55,7 +54,7 @@ jobs:
       #   if: always()
 
       - name: Fail Job if Semgrep Fails
-        if: failure()  # Fail the job if semgrep encountered an error
+        if: always()failure()  # Fail the job if semgrep encountered an error
         run: exit 1
 
   Trivy-Scan:
