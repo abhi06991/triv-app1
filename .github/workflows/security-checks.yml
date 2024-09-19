@@ -30,11 +30,11 @@ jobs:
       - name: Run semgrep on the repo
         run: |
           # pip3 install semgrep
-          continue-on-error: true
           semgrep scan --error --config "p/default" --metrics=off --no-autofix --sarif --sarif-output=findings.sarif
+          continue-on-error: true
 
       - name: Check if SARIF file exists
-      if: always()
+        if: always()
         run: |
           if [[ -f "findings.sarif" ]]; then
             echo "sarif_exists=true" >> $GITHUB_ENV
