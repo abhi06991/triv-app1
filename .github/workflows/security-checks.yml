@@ -29,7 +29,8 @@ jobs:
 
       - name: Run semgrep on the repo
         run: |
-          semgrep scan --sarif --sarif-output=findings.sarif
+          # pip3 install semgrep
+          semgrep scan --error --config "p/default" --no-autofix --severity=ERROR --sarif --sarif-output=findings.sarif
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v3
