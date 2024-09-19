@@ -1,20 +1,11 @@
-# Use an outdated base image
-FROM ubuntu:18.04
+FROM eclipse-temurin:22.0.2_9-jdk-alpine
 
-# Install potentially vulnerable packages (latest versions available for Ubuntu 18.04)
-RUN apt-get update && \
-    apt-get install -y \
-    wget \
-    curl \
-    openssl \
-    libssl-dev \
-    apache2
+COPY AppOne.java /usr/src/triv-app1/
 
-# Add a user with root privileges (potential security risk)
-RUN useradd -ms /bin/bash admin && echo "admin:password" | chpasswd && adduser admin sudo
+WORKDIR /usr/src/triv-app1
 
-# Expose an unnecessary port (potential security risk)
+RUN javac AppOne.java
+
 EXPOSE 8080
 
-# Run the apache service (insecure configuration)
-CMD ["apachectl", "-D", "FOREGROUND"]
+CMD ["sh", "-c", "java AppOne && tail -f /dev/null"]
