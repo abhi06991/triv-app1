@@ -40,6 +40,7 @@ jobs:
             echo "sarif_exists=true" >> $GITHUB_ENV
           else
             echo "sarif_exists=false" >> $GITHUB_ENV
+          fi
 
       - name: Upload Artifact
         if: always() && env.sarif_exists == 'true'  # Check if SARIF exists before uploading
