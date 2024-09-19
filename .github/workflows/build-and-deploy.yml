@@ -2,7 +2,8 @@ name: Build and Deploy
 
 on:
   workflow_run:
-    workflows: ["Security Checks"]  # This ensures that Workflow 2 runs after Workflow 1
+    workflows:
+      - SecurityChecks
     types:
       - completed
       
