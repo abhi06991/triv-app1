@@ -34,7 +34,6 @@ jobs:
           continue-on-error: true
 
       - name: Check if SARIF file exists
-        id: semgrep
         run: |
           if [[ -f "findings.sarif" ]]; then
             echo "sarif_exists=true" >> $GITHUB_ENV
