@@ -70,6 +70,7 @@ jobs:
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@0.20.0
         with:
+          args: --exit-code 1 --severity HIGH,CRITICAL
           image-ref: '${{ github.sha }}'
           format: 'sarif'
           output: 'trivy-results.sarif'
