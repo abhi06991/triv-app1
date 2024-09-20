@@ -105,8 +105,8 @@ jobs:
           head: ${{ github.ref_name }}
           extra_args: --only-verified --json
 
-      - name: Upload rtifact
-        uses: actions/upload-artifact@v2
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v3
         with:
           name: trufflehog-results
           path: trufflehog_output.json
