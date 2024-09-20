@@ -21,7 +21,14 @@ spec:
       containers:
       - image: asia-south1-docker.pkg.dev/triv-case/triv-repo/trivapp1:latest
         name: app1
+        volumeMounts:
+        - name: seccomp-profile
+          mountPath: /seccomp
+          readOnly: true
         securityContext:
+          seccompProfile:
+            type: Localhost
+            localhostProfile: "/seccomp/seccomp-profile.json"
           readOnlyRootFilesystem: true
           allowPrivilegeEscalation: false
           appArmorProfile:
@@ -47,3 +54,7 @@ spec:
           requests:
             cpu: 250m
             memory: 256Mi
+      volumes:
+      - name: seccomp-profile
+        configMap:
+          name: seccomp-profile
