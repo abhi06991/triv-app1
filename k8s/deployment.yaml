@@ -24,6 +24,20 @@ spec:
         securityContext:
           readOnlyRootFilesystem: true
           allowPrivilegeEscalation: false
+          appArmorProfile:
+            type: RuntimeDefault
+          capabilities:
+            drop:
+            - NET_RAW
+            - SYS_ADMIN
+            - SYS_MODULE
+            - SYS_TIME
+            - SYS_BOOT
+            - SYS_RESOURCE
+            - SYS_PTRACE
+            - CHOWN
+            - FSETID
+            - KILL
         ports:
         - containerPort: 8080
         resources:

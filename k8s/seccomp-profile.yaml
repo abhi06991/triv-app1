@@ -1,0 +1,37 @@
+{
+  "defaultAction": "SCMP_ACT_ALLOW",
+  "architectures": [
+    "SCMP_ARCH_X86_64",
+    "SCMP_ARCH_X86",
+  ],
+  "syscalls": [
+    {
+      "names": [
+        "clone",            
+        "fork",             
+        "execve",           
+        "setns",            
+        "unshare",          
+        "mount",            
+        "umount2",          
+        "ptrace",           
+        "mknod",            
+        "chown",            
+        "chmod",            
+        "setuid",           
+        "setgid",           
+        "capset",           
+        "syslog",           
+        "kill",             
+        "bpf",              
+        "init_module",      
+        "finit_module",     
+        "delete_module",    
+        "acct",             
+        "swapoff",          
+        "swapon"            
+      ],
+      "action": "SCMP_ACT_ERRNO"
+    }
+  ]
+}

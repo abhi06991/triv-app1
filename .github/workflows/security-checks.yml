@@ -89,3 +89,11 @@ jobs:
       #   uses: github/codeql-action/upload-sarif@v2
       #   with:
       #     sarif_file: 'trivy-results.sarif'
+
+  Trufflehog-Scan:
+    - name: Scan for Secrets
+            uses: trufflesecurity/trufflehog@main
+            with:
+              base: ""
+              head: ${{ github.ref_name }}
+              extra_args: --only-verified --fail
