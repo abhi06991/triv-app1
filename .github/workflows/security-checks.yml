@@ -94,15 +94,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
-      - name: Install TruffleHog
-        run: pip install trufflehog
+      - name: Scan for Secrets
+        uses: trufflesecurity/trufflehog@main
+        with:
+          base: ""
+          head: ${{ github.ref_name }}
+          extra_args: --only-verified --json 
+        run: |
+          ls
 
-      - name: Run TruffleHog
-        run: trufflehog --json --only-verified --path . > trufflehog_output.json
-
-      - name: Upload TruffleHog Results
+      - name: Upload Artifact
         uses: actions/upload-artifact@v3
         with:
           name: trufflehog-results
