@@ -103,7 +103,7 @@ jobs:
         run: trufflehog --json --only-verified --path . > trufflehog_output.json
 
       - name: Upload TruffleHog Results
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: trufflehog-results
           path: trufflehog_output.json
